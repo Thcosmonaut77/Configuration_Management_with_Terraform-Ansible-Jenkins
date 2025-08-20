@@ -104,7 +104,7 @@ resource "aws_instance" "master_instance" {
   vpc_security_group_ids      = [aws_security_group.ansible_sg.id]
   key_name                    = var.kp
   
-  user_data = templatefile("ansible_master.sh", {
+  user_data = templatefile("${path.module}/scripts/ansible_master.sh", {
     ansible_user   = var.ansible_user
     admin_password = var.admin_password
     slave_ips      = join(",", aws_instance.slave_instances[*].public_ip)
@@ -123,7 +123,7 @@ resource "aws_instance" "slave_instances" {
   vpc_security_group_ids = [aws_security_group.ansible_sg.id]
   key_name               = var.kp
 
-  user_data = templatefile("ansible_slaves.sh", {
+  user_data = templatefile("${path.module}/scripts/ansible_slaves.sh", {
     admin_password = var.admin_password
     ansible_user   = var.ansible_user
 
