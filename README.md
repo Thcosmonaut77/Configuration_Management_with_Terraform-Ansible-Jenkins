@@ -5,7 +5,7 @@
 ![AWS](https://img.shields.io/badge/Cloud-AWS-FF9900?logo=amazon-aws)
 ![Jenkins](https://img.shields.io/badge/CI/CD-Jenkins-blue?logo=jenkins)
 
-## 📌 Project Overview
+##  Project Overview
 This project provisions infrastructure on **AWS with Terraform** and uses **Ansible** for configuration management.  
 
 - Terraform creates a **Jenkins master node** and multiple **slave nodes**.  
@@ -17,7 +17,7 @@ The result is a **fully automated, idempotent, and production-ready setup** for 
 
 ---
 
-## 🚀 Features
+##  Features
 - Infrastructure provisioning with **Terraform**
 - Automated Jenkins + Ansible bootstrap via **user_data**
 - Slave nodes ready for Ansible orchestration
@@ -29,7 +29,7 @@ The result is a **fully automated, idempotent, and production-ready setup** for 
 
 ---
 
-## 🛠️ Tools & Technologies
+##  Tools & Technologies
 - **AWS** (EC2, Security Groups)
 - **Terraform** (Infrastructure as Code)
 - **Ansible** (Playbooks, Inventory, Config Management)
@@ -39,7 +39,7 @@ The result is a **fully automated, idempotent, and production-ready setup** for 
 
 ---
 
-## 📂 Repository Structure
+##  Repository Structure
 
 ```bash
 .
@@ -68,7 +68,7 @@ terraform apply -auto-approve
 ```
 Jenkins, Ansible, and SSH setup are all handled during provisioning.
 
-2️⃣ Run Ansible Playbooks
+### 2️⃣ Run Ansible Playbooks
 
 After infrastructure is up, run playbooks directly from the Jenkins master:
 
