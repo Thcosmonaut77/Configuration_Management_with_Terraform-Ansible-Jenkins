@@ -55,7 +55,7 @@ The result is a **fully automated, idempotent, and production-ready setup** for 
 │── LICENSE # License file
 ```
 
-## ⚙️ Usage
+##  Usage
 
 ### 1️⃣ Provision AWS Infrastructure
 Terraform automatically provisions the EC2 instances and configures:
