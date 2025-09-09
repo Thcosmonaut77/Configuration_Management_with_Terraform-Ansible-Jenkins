@@ -72,8 +72,7 @@ EOF
     done
 } | sudo -u ${ansible_user} tee /home/${ansible_user}/ansible/hosts > /dev/null
 
-
-
+# Create nginx.yaml
 
 cat <<EOF | sudo -u ${ansible_user} tee /home/${ansible_user}/ansible/nginx.yaml > /dev/null
 ---
@@ -93,6 +92,8 @@ cat <<EOF | sudo -u ${ansible_user} tee /home/${ansible_user}/ansible/nginx.yaml
         state: started
         enabled: yes
 EOF
+
+# Create update.yaml
 
 cat <<EOF | sudo -u ${ansible_user} tee /home/${ansible_user}/ansible/update.yaml > /dev/null
 ---
