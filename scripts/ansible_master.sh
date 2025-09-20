@@ -20,8 +20,6 @@ echo "===== Updating package list and installing Jenkins ====="
 sudo apt-get update -y
 sudo apt-get install -y jenkins
 
-echo "===== Installing Maven build tool ====="
-sudo apt-get install -y maven
 
 echo "===== Enabling and starting Jenkins ====="
 sudo systemctl enable jenkins

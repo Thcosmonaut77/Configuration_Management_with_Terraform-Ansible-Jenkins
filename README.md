@@ -6,25 +6,27 @@
 ![Jenkins](https://img.shields.io/badge/CI/CD-Jenkins-blue?logo=jenkins)
 
 ##  Project Overview
-This project provisions infrastructure on **AWS with Terraform** and uses **Ansible** for configuration management.  
+This project provisions and configures a **Jenkins + Ansible** automation environment on **AWS** using **Terraform** and **Ansible**.  
 
-- Terraform creates a **Jenkins master node** and multiple **slave nodes**.  
-- Master is auto-configured with **Java, Jenkins, Maven, Ansible, SSH keys, and dynamic inventory**.  
-- Slaves are auto-configured with **user accounts, SSH access, and Ansible readiness**.  
+- Terraform provisions a **Jenkins master node** and multiple **slave nodes** with **user_data** scripts.  
+- Master is auto-configured with **Java, Jenkins, Ansible, SSH key pair generation, ansible.cfg, ansible playbooks, and dynamic inventory**.  
+- Slaves are auto-configured with **user password, SSH access, and Ansible readiness**.  
 - Ansible playbooks manage services like **Nginx installation** and **system updates** across the environment.  
+- A **Jenkins pipeline** is created to automatically trigger **Ansible playbooks** for configuration management.
 
-The result is a **fully automated, idempotent, and production-ready setup** for cloud infrastructure and configuration.
+The result is a **self-contained DevOps lab** where **infrastructure, configuration, and CI/CD workflows** are fully automated and production-ready.
 
 ---
 
 ##  Features
 - Infrastructure provisioning with **Terraform**
 - Automated Jenkins + Ansible bootstrap via **user_data**
-- Slave nodes ready for Ansible orchestration
+- SSH key-based authentication between master and slaves
+- Pre-configured Ansible inventory and configuration file
 - Ansible playbooks for:
   - Installing and enabling **Nginx**
   - Running **system updates and reboots** when needed
-- Inventory and config auto-generated on master
+- Jenkins pipeline to orchestrate Ansible tasks across nodes
 - Infrastructure as Code (IaC) for **repeatable, consistent deployments**
 
 ---
@@ -33,7 +35,7 @@ The result is a **fully automated, idempotent, and production-ready setup** for 
 - **AWS** (EC2, Security Groups)
 - **Terraform** (Infrastructure as Code)
 - **Ansible** (Playbooks, Inventory, Config Management)
-- **Jenkins** (CI/CD server)
+- **Jenkins** (Pipeline automation)
 - **Linux** (Ubuntu, systemd services)
 - **Bash scripting** (automation wrappers)
 
@@ -43,23 +45,26 @@ The result is a **fully automated, idempotent, and production-ready setup** for 
 
 ```bash
 .
-│── scripts/ # Automation scripts
-│ ├── ansible_master.sh # Provisions Jenkins + Ansible master
-│ └── ansible_slaves.sh # Configures slave nodes
-│── ec2.tf # Terraform AWS EC2 provisioning
-│── variables.tf # Terraform variables
-│── ansible.cfg # Ansible configuration
-│── install_nginx.yaml # Playbook for Nginx setup
-│── update.yaml # Playbook for system updates & reboots
-│── README.md # Documentation
-│── LICENSE # License file
+├── scripts/                # Automation scripts
+│   ├── ansible_master.sh   # Bootstraps Jenkins + Ansible master node
+│   └── ansible_slaves.sh   # Configures slave nodes
+├── ec2.tf                  # Terraform AWS EC2 provisioning
+├── variables.tf            # Terraform variables
+├── ansible.cfg             # Ansible configuration
+├── hosts                   # Auto-generated Ansible inventory
+├── install_nginx.yaml      # Playbook for Nginx setup
+├── update.yaml             # Playbook for system updates & reboots
+├── Jenkinsfile             # Jenkins pipeline definition
+├── README.md               # Documentation
+└── LICENSE                 # License file
+
 ```
 
 ##  Usage
 
 ### 1️⃣ Provision AWS Infrastructure
 Terraform automatically provisions the EC2 instances and configures:
-- Jenkins master (Java, Jenkins, Maven, Ansible, SSH keys, inventory)
+- Jenkins master (Java, Jenkins, Ansible, SSH keys, inventory)
 - Slave nodes (user setup, SSH access)
 
 ```bash
@@ -77,6 +82,8 @@ After infrastructure is up, run playbooks directly from the Jenkins master:
 
 • Update & patch systems:
 - ansible-playbook -i ansible/hosts ansible/update.yaml
+
+Jenkins can also be used to automate and schedule these playbooks.
 
 ## License
 
