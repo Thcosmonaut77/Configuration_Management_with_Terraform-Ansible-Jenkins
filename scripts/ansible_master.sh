@@ -20,6 +20,8 @@ echo "===== Updating package list and installing Jenkins ====="
 sudo apt-get update -y
 sudo apt-get install -y jenkins
 
+echo "===== Installing Maven build tool ====="
+sudo apt-get install -y maven
 
 echo "===== Enabling and starting Jenkins ====="
 sudo systemctl enable jenkins
@@ -66,7 +68,7 @@ EOF
 {
     echo "[slaves]"
     for ip in $(echo ${slave_ips} | tr ',' ' '); do
-        echo "$ip ansible_user=${ansible_user} ansible_ssh_private_key_file=/home/${ansible_user}/.ssh/id_rsa"
+        echo "$ip"
     done
 } | sudo -u ${ansible_user} tee /home/${ansible_user}/ansible/hosts > /dev/null
 

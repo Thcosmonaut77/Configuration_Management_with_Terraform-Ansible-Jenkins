@@ -126,6 +126,7 @@ resource "aws_instance" "slave_instances" {
   user_data = templatefile("${path.module}/scripts/ansible_slaves.sh", {
     admin_password = var.admin_password
     ansible_user   = var.ansible_user
+   
 
   })
 
